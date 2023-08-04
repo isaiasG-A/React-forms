@@ -4,7 +4,8 @@ export default function SignUpForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [formValid, setFormValid] = useState("");
+  const [formValidUser, setFormValidUser] = useState("");
+  const [formValidPass, setFormValidPass] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -31,17 +32,30 @@ export default function SignUpForm({ setToken }) {
     }
   }
 
-  async function formValidation() {
-    username.length === 0 ? setFormValid("block") : setFormValid("none");
-    console.log(formValid)
+  async function formValidationUser() {
+    if (username.length === 0) { 
+      setFormValidUser("Please provide an username") 
+    } else if(username.length < 3){
+      setFormValidUser("Username needs to be longer than 3 characters");
+    } else {
+      setFormValidUser("")
+    } 
+  }
+
+  async function formValidationPass() {
+    if(password.length < 3) {
+      setFormValidPass("Password needs to be longer than 3 characters")
+    } else {
+      setFormValidPass("")
+    } 
   }
 
   return (
     <div className="signup">
       <h2>Sign Up</h2>
         { error ? <p>{error}</p> : null }
-        <h4 style={{display: `${formValid}`}}>please provide an username</h4>
         <form onSubmit={handleSubmit}>
+        <h4>{formValidUser}</h4>
           <label>
             Username: 
             <input 
@@ -50,13 +64,14 @@ export default function SignUpForm({ setToken }) {
             />
           </label>
           <label>
+          <h4>{formValidPass}</h4>
             Password: 
             <input 
               value ={password} 
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
-          <button onClick={formValidation}>Submit</button> 
+          <button onClick={() => {formValidationUser(), formValidationPass()}}>Submit</button> 
         </form>
     </div>
   )
