@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 3%;
+}
+
+button {
+  margin-top: 4%;
+}
+
+.auth {
+  border: 9px solid red;
+  padding: 6%;
+}
+
+.signup {
+  border: 9px solid blue;
+  padding: 5%;
+  margin-top: 14%;
+}
