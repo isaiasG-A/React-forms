@@ -30,7 +30,7 @@ async function handleClick() {
     <div className="auth">
       <h2>Authenticate</h2>
       { error ? <p>error</p> : null}
-      {successMessage ? <p>{successMessage}</p> : null}
+      {successMessage === "jwt malformed" ? <p> Please Sign up before continuing</p> : <p>{successMessage}</p>}
       {data ? <h4>data: {data.iat}</h4> : null} 
       <button onClick={handleClick}>Authentication Token</button>
     </div>
